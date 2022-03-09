@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { usersReducer } from './store/users.reducer';
+import { UsersEffects } from './store/users.effects';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     ValidateEqualModule,
     MatSnackBarModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      users: usersReducer
+    }, {}),
+    EffectsModule.forRoot([UsersEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

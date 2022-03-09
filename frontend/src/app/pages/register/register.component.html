@@ -2,8 +2,8 @@
    <form fxLayout="column" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
-          <input type="text" name="displayName" matInput required #displayName="ngModel" ngModel>
-          <mat-error *ngIf="displayName.touched && displayName.hasError('required')">
+          <input type="text" name="name" matInput required #name="ngModel" ngModel>
+          <mat-error *ngIf="name.touched && name.hasError('required')">
             Name is required!
           </mat-error>
         </mat-form-field>
@@ -36,6 +36,6 @@
             Password doesn't match!
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary">REGISTER</button>
+        <button mat-raised-button color="primary" [disabled]="(loading | async)">REGISTER</button>
       </form>
 </app-centered-card>

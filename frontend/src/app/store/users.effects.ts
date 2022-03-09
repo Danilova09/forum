@@ -2,12 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
-import {
-  registerUserFailure,
-  registerUserRequest,
-  registerUserSuccess
-} from './users.actions';
-import { map, mergeMap, NEVER, tap, withLatestFrom } from 'rxjs';
+import { registerUserFailure, registerUserRequest, registerUserSuccess } from './users.actions';
+import { map, mergeMap, tap } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
 import { AppState } from './types';
 import { Store } from '@ngrx/store';
