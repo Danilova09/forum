@@ -5,6 +5,9 @@
     autocomplete="off"
     (ngSubmit)="onSubmit()"
   >
+    <div *ngIf="error | async" class="error">
+      Wrong data!
+    </div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input
