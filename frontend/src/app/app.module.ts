@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     FormsModule,
     MatInputModule,
     ValidateEqualModule,
+    MatSnackBarModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
   ],
