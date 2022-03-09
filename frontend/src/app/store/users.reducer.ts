@@ -7,6 +7,7 @@ import {
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess,
+  logoutUser,
 } from './users.actions';
 
 const initialState: UsersState = {
@@ -23,6 +24,7 @@ export const usersReducer = createReducer(
   on(registerUserSuccess, (state, {user}) => ({...state, registerLoading: false, user})),
   on(registerUserFailure, (state, {error}) => ({...state, registerLoading: false, registerError: error})),
   on(loginUserRequest, state => ({...state, loginLoading: true, loginError: null,})),
-  on(loginUserSuccess, (state, {user}) => ({...state, loginLoading: false ,user})),
-  on(loginUserFailure, (state, {error}) => ({...state,loginLoading: false, loginError: error})),
+  on(loginUserSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
+  on(loginUserFailure, (state, {error}) => ({...state, loginLoading: false, loginError: error})),
+  on(logoutUser, state => ({...state, user: null}))
 );

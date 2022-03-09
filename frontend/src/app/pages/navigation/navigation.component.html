@@ -4,8 +4,20 @@
   <div>
     <span class="logo" routerLink="/">Forum</span>
   </div>
-  <nav>
-    <button mat-raised-button routerLink="/register">REGISTER</button>
-    <button mat-raised-button routerLink="/login" style="margin-left: 10px;">LOGIN</button>
+  <nav *ngIf="!(user | async) else userMenu">
+    <a mat-raised-button routerLink="/register">REGISTER</a>
+    <a mat-raised-button routerLink="/login" style="margin-left: 10px;">SIGN IN</a>
   </nav>
 </mat-toolbar>
+
+<ng-template #userMenu>
+  <nav>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </nav>
+</ng-template>

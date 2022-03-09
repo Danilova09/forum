@@ -6,11 +6,13 @@ import {
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess,
+  logoutUser,
+  logoutUserRequest,
   registerUserFailure,
   registerUserRequest,
   registerUserSuccess
 } from './users.actions';
-import { map, mergeMap, tap } from 'rxjs';
+import { map, mergeMap, NEVER, tap, withLatestFrom } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
 import { AppState } from './types';
 import { Store } from '@ngrx/store';
@@ -48,5 +50,20 @@ export class UsersEffects {
       this.helpers.catchServerError(loginUserFailure)
     ))
   ))
+
+  logoutUser = createEffect(() => this.actions.pipe(
+    ofType(logoutUserRequest),
+    withLatestFrom(this.store.select(state => state.users.user)),
+    mergeMap(([_, user]) => {
+      if (user) {
+        return this.usersService.logout(user.token).pipe(
+          map(() => logoutUser()),
+          tap(() => this.helpers.openSnackbar('Logout successful'))
+        );
+      }
+
+      return NEVER;
+    }))
+  )
 
 }
