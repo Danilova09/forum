@@ -1,11 +1,31 @@
-import { RegisterError, User } from '../models/user.model';
-
-export type UsersState = {
-  user: null | User,
-  registerLoading: boolean,
-  registerError: null | RegisterError,
+export interface User {
+  _id: string,
+  email: string,
+  token: string,
 }
 
-export type AppState = {
-  users: UsersState,
+export interface RegisterUserData {
+  name: string,
+  email: string,
+  password: string
+}
+
+export interface LoginUserData {
+  email: string,
+  password: string,
+}
+
+export interface FieldError {
+  message: string
+}
+
+export interface RegisterError {
+  errors: {
+    password: FieldError,
+    email: FieldError
+  }
+}
+
+export interface LoginError {
+  error: string
 }
