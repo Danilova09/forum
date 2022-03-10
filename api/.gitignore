@@ -2,4 +2,11 @@
 .DS_Store/
 node_modules/
 public/uploads/*
+!public/uploads/IMG_1.PNG
+!public/uploads/IMG_2.PNG
+!public/uploads/IMG_3.PNG
+!public/uploads/IMG_4.PNG
+!public/uploads/IMG_5.PNG
+!public/uploads/IMG_6.PNG
+!public/uploads/IMG_7.PNG
 !public/uploads/.gitkeep

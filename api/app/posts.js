@@ -21,7 +21,7 @@ const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().populate('user');
         return res.send(posts);
     } catch (error) {
         next(error);
@@ -31,10 +31,10 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', upload.single('image') ,async (req, res, next) => {
     try {
-        console.log(req.body);
         const postData = {
             title: req.body.title,
             description: req.body.description,
+            user: req.body.user,
             image: null,
         }
 
