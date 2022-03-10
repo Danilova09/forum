@@ -25,6 +25,8 @@ import { UsersEffects } from './store/users.effects';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { postsReducer } from './store/posts.reducer';
+import { PostsEffects } from './store/posts.effects';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -59,9 +61,13 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     ValidateEqualModule,
     MatSnackBarModule,
     StoreModule.forRoot({
+      posts: postsReducer,
       users: usersReducer
     }, {metaReducers}),
-    EffectsModule.forRoot([UsersEffects]),
+    EffectsModule.forRoot([
+      PostsEffects,
+      UsersEffects
+    ]),
     MatIconModule,
     MatMenuModule,
   ],
