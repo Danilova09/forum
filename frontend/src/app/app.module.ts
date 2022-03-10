@@ -27,6 +27,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { postsReducer } from './store/posts.reducer';
 import { PostsEffects } from './store/posts.effects';
+import { NewPostComponent } from './pages/new-post/new-post.component';
+import { FileInputComponent } from './ui/file-input/file-input.component';
+import { ImagePipe } from './pipes/image.pipe';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -45,6 +48,9 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     RegisterComponent,
     LoginComponent,
     CenteredCardComponent,
+    NewPostComponent,
+    FileInputComponent,
+    ImagePipe,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiPostData, Post } from '../models/post.model';
+import { ApiPostData, Post, PostData } from '../models/post.model';
 import { environment as env } from '../../environments/environment';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +22,20 @@ export class PostsService {
             postData.user,
             postData.title,
             postData.description,
+            postData.datetime,
             postData.image,
           );
         });
       })
     );
+  }
+
+  createPost(postData: PostData) {
+    const formData = new FormData();
+    Object.keys(postData).forEach(key => {
+      if (postData[key] !== null) formData.append(key, postData[key]);
+    });
+
+    return this.http.post(env.apiUrl + '/posts', formData);
   }
 }

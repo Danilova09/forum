@@ -8,6 +8,11 @@ const PostSchema = new Schema({
         ref: 'User',
         required: true,
     },
+    datetime: {
+        type: String,
+        required: true,
+        default: new Date().toString(),
+    },
     title: {
         type: String,
         required: true,

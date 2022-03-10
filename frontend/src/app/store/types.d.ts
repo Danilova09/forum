@@ -13,6 +13,8 @@ export type PostsState ={
   posts: Post[],
   fetchLoading: boolean,
   fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 }
 
 export type AppState = {

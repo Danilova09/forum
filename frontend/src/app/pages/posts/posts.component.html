@@ -1,5 +1,11 @@
-<mat-card *ngFor="let post of (posts | async)">
-  <mat-card-content>
-    <p>{{ post.title }}</p>
-  </mat-card-content>
-</mat-card>
+<div class="posts-block">
+  <mat-card *ngFor="let post of (posts | async)">
+    <mat-card-content fxLayout="row" fxLayoutAlign="flex-start">
+      <img  mat-card-md-image [alt]="post.title" [src]="post.image | image">
+      <div style="margin-left: 20px;">
+        <p>Datetime: {{ post.datetime.slice(0, 21) }}, by <strong>{{ post.user.name }}</strong> </p>
+        <p><a href="#">{{ post.title }}</a></p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
