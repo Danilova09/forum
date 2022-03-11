@@ -31,6 +31,9 @@ import { NewPostComponent } from './pages/new-post/new-post.component';
 import { FileInputComponent } from './ui/file-input/file-input.component';
 import { ImagePipe } from './pipes/image.pipe';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
+import { commentsReducer } from './store/comments.reducer';
+import { CommentsEffects } from './store/comments.effects';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -68,16 +71,19 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     MatInputModule,
     ValidateEqualModule,
     MatSnackBarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
     StoreModule.forRoot({
       posts: postsReducer,
-      users: usersReducer
+      users: usersReducer,
+      comments: commentsReducer,
     }, {metaReducers}),
     EffectsModule.forRoot([
       PostsEffects,
-      UsersEffects
+      UsersEffects,
+      CommentsEffects,
     ]),
-    MatIconModule,
-    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

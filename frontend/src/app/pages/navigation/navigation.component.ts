@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { User } from '../../models/user.model';
 import { Observable } from 'rxjs';
-import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,9 +13,7 @@ import { UsersService } from '../../services/users.service';
 export class NavigationComponent {
   user: Observable<null | User>;
 
-  constructor(
-    private store: Store<AppState>
-  ) {
+  constructor(private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
   }
 

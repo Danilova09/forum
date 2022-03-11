@@ -7,7 +7,7 @@ import { environment as env } from '../../environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   registerUser(userData: RegisterUserData) {
     return this.http.post<User>(env.apiUrl + '/users', userData);

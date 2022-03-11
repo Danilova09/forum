@@ -6,9 +6,23 @@
     <p><strong>Author:</strong> {{ (post | async)?.user?.name }}</p>
     <p><strong>Description:</strong> {{ (post | async)?.description }}</p>
   </mat-card-content>
+  <mat-card *ngFor="let comment of (comments | async)">
+    <mat-card-content>
+      <p><strong>{{ comment.user.name }} </strong> replied</p>
+      <p>{{ comment.message }}</p>
+    </mat-card-content>
+  </mat-card>
 </app-centered-card>
-
-
 <app-centered-card title="Add comment" *ngIf="(user | async)">
-
+  <form fxLayout="column" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <input type="text" name="message" autocomplete="username" required
+             matInput ngModel id="message" #message="ngModel">
+      <mat-error *ngIf="message.touched && message.getError('required')">
+        Message is required!
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary">COMMENT</button>
+  </form>
 </app-centered-card>

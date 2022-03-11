@@ -20,7 +20,6 @@ export interface ApiPostData {
   image: string,
 }
 
-
 export interface PostData {
   [key: string]: any;
   user: string | undefined,

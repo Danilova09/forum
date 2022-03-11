@@ -14,11 +14,9 @@ export class HelpersService {
     if (!config || !config.duration) {
       config = {...config, duration: 3000};
     }
-
     if (!action) {
       action = 'OK';
     }
-
     return this.snackbar.open(message, action, config);
   }
 
@@ -31,7 +29,6 @@ export class HelpersService {
       } else {
         this.snackbar.open('Server error', 'OK', {duration: 3000})
       }
-
       return of(action({error: validationError}));
     })
   }

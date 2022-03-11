@@ -26,7 +26,6 @@ export class PostsEffects {
   fetchPosts = createEffect(() => this.actions.pipe(
     ofType(fetchPostsRequest),
     mergeMap(() => this.postsService.getPosts().pipe(
-      tap(posts => console.log(posts)),
       map(posts => fetchPostsSuccess({posts})),
       catchError(() => of(fetchPostsFailure({
         error: 'Something went wrong'
@@ -37,7 +36,6 @@ export class PostsEffects {
   createPost = createEffect(() => this.actions.pipe(
     ofType(createPostRequest),
     mergeMap(({postData}) => this.postsService.createPost(postData).pipe(
-      tap(postData => console.log(postData)),
       map(() => createPostSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createPostFailure({error: 'Wrong data'})))
@@ -47,7 +45,6 @@ export class PostsEffects {
   getPostById= createEffect(() => this.actions.pipe(
     ofType(getPostRequest),
     mergeMap(({postId}) => this.postsService.getPostById(postId).pipe(
-      tap(post => console.log(post)),
       map(post => getPostSuccess({post})),
       catchError(() => of(getPostFailure({
         error: 'Something went wrong'

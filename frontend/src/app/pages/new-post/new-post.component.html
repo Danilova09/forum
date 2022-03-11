@@ -10,12 +10,13 @@
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <input type="text" name="description" autocomplete="username"
-               matInput ngModel id="description" #description="ngModel">
+             matInput ngModel id="description" #description="ngModel">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Image</mat-label>
-      <app-file-input name="image"  #image="ngModel" id="image" ngModel></app-file-input>
+      <app-file-input name="image" #image="ngModel" id="image" ngModel></app-file-input>
     </mat-form-field>
-    <button mat-raised-button color="primary">ADD</button>
+    <button mat-raised-button color="primary" [disabled]="(loading | async)">ADD</button>
   </form>
 </app-centered-card>
+
