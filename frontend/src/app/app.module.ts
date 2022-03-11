@@ -30,6 +30,7 @@ import { PostsEffects } from './store/posts.effects';
 import { NewPostComponent } from './pages/new-post/new-post.component';
 import { FileInputComponent } from './ui/file-input/file-input.component';
 import { ImagePipe } from './pipes/image.pipe';
+import { PostDetailsComponent } from './pages/post-details/post-details.component';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -51,6 +52,7 @@ const metaReducers: MetaReducer[] = [localStorageSyncReducer];
     NewPostComponent,
     FileInputComponent,
     ImagePipe,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,

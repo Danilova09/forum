@@ -6,7 +6,7 @@ import {
   createPostSuccess,
   fetchPostsFailure,
   fetchPostsRequest,
-  fetchPostsSuccess
+  fetchPostsSuccess, getPostFailure, getPostRequest, getPostSuccess
 } from './posts.actions';
 
 const initialState: PostsState = {
@@ -15,6 +15,9 @@ const initialState: PostsState = {
   fetchError: null,
   createLoading: false,
   createError: null,
+  post: null,
+  postLoading: false,
+  postError: null,
 };
 
 export const postsReducer = createReducer(
@@ -26,4 +29,8 @@ export const postsReducer = createReducer(
   on(createPostRequest, (state, {postData}) => ({...state, createLoading: true})),
   on(createPostSuccess, (state) => ({...state, createLoading: false})),
   on(createPostFailure, (state, {error}) => ({...state, createLoading: false , createError: error})),
+
+  on(getPostRequest, (state, {postId}) => ({...state, postLoading: true})),
+  on(getPostSuccess, (state, {post}) => ({...state, postLoading: false, post})),
+  on(getPostFailure, (state, {error}) => ({...state, postLoading: false , postError: error})),
 );

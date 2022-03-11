@@ -15,7 +15,6 @@ export class NavigationComponent {
   user: Observable<null | User>;
 
   constructor(
-    private usersService: UsersService,
     private store: Store<AppState>
   ) {
     this.user = store.select(state => state.users.user);

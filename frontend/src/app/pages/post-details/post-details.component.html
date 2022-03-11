@@ -1,0 +1,14 @@
+<app-centered-card>
+  <mat-card-content>
+    <h1><strong>{{ (post | async)?.title }}</strong></h1>
+    <img [src]="(post | async)?.image | image" [alt]="(post | async)?.title" mat-card-lg-image>
+    <p><strong>Datetime:</strong> {{ (post | async)?.datetime?.slice(0, 21) }}</p>
+    <p><strong>Author:</strong> {{ (post | async)?.user?.name }}</p>
+    <p><strong>Description:</strong> {{ (post | async)?.description }}</p>
+  </mat-card-content>
+</app-centered-card>
+
+
+<app-centered-card title="Add comment" *ngIf="(user | async)">
+
+</app-centered-card>

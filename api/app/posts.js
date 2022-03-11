@@ -28,6 +28,17 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/:id', async (req, res, next) => {
+    try {
+        if (req.params.id) {
+            const post = await Post.findById(req.params.id).populate('user');
+            return res.send(post);
+        }
+        return res.send({error: 'wrong data!'});
+    } catch (error) {
+        next(error);
+    }
+});
 
 router.post('/', upload.single('image') ,async (req, res, next) => {
     try {

@@ -8,3 +8,7 @@ export const fetchPostsFailure = createAction('[Posts] Fetch Failure', props<{er
 export const createPostRequest = createAction('[Posts] Create Request', props<{postData: PostData}>());
 export const createPostSuccess = createAction('[Posts] Create Success');
 export const createPostFailure = createAction('[Posts] Create Failure', props<{error: string}>());
+
+export const getPostRequest = createAction('[Posts] Create Request', props<{postId: string}>());
+export const getPostSuccess = createAction('[Posts] Create Success', props<{post: Post}>());
+export const getPostFailure = createAction('[Posts] Create Failure', props<{error: string}>());

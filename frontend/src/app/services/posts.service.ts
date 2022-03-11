@@ -32,10 +32,16 @@ export class PostsService {
 
   createPost(postData: PostData) {
     const formData = new FormData();
-    Object.keys(postData).forEach(key => {
-      if (postData[key] !== null) formData.append(key, postData[key]);
-    });
+    if (postData) {
+      Object.keys(postData).forEach(key => {
+        if (postData[key] !== null) formData.append(key, postData[key]);
+      });
+    }
 
     return this.http.post(env.apiUrl + '/posts', formData);
+  }
+
+  getPostById(postId: string) {
+    return this.http.get<Post>(env.apiUrl + '/posts/' + postId);
   }
 }

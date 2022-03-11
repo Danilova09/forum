@@ -6,7 +6,10 @@ import {
   createPostSuccess,
   fetchPostsFailure,
   fetchPostsRequest,
-  fetchPostsSuccess
+  fetchPostsSuccess,
+  getPostFailure,
+  getPostRequest,
+  getPostSuccess
 } from './posts.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -38,6 +41,17 @@ export class PostsEffects {
       map(() => createPostSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createPostFailure({error: 'Wrong data'})))
+    ))
+  ));
+
+  getPostById= createEffect(() => this.actions.pipe(
+    ofType(getPostRequest),
+    mergeMap(({postId}) => this.postsService.getPostById(postId).pipe(
+      tap(post => console.log(post)),
+      map(post => getPostSuccess({post})),
+      catchError(() => of(getPostFailure({
+        error: 'Something went wrong'
+      })))
     ))
   ));
 }

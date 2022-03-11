@@ -15,6 +15,9 @@ export type PostsState ={
   fetchError: null | string,
   createLoading: boolean,
   createError: null | string,
+  post: null | Post,
+  postLoading: boolean,
+  postError: null | string,
 }
 
 export type AppState = {
